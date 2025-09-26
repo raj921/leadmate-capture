@@ -22,6 +22,11 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -57,6 +62,17 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-background': 'var(--gradient-background)',
+      },
+      boxShadow: {
+        'soft': 'var(--shadow-soft)',
+        'medium': 'var(--shadow-medium)',
+      },
+      transitionTimingFunction: {
+        'smooth': 'var(--transition-smooth)',
       },
       borderRadius: {
         lg: "var(--radius)",
