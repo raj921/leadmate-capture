@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { LeadCaptureForm } from "@/components/lead-capture-form";
 import { WebhookConfig } from "@/components/webhook-config";
+import { Button } from "@/components/ui/button";
+import { Settings } from "lucide-react";
 
 const Index = () => {
   const [webhookUrl, setWebhookUrl] = useState("");
@@ -30,6 +33,16 @@ const Index = () => {
           webhookUrl={webhookUrl} 
           onWebhookChange={setWebhookUrl} 
         />
+      </div>
+
+      {/* Admin Link */}
+      <div className="text-center mt-8">
+        <Link to="/admin">
+          <Button variant="ghost" size="sm">
+            <Settings className="h-4 w-4 mr-2" />
+            Admin Dashboard
+          </Button>
+        </Link>
       </div>
 
       {/* Footer */}

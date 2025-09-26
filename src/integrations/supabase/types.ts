@@ -14,7 +14,113 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_users: {
+        Row: {
+          created_at: string
+          id: string
+          password_hash: string
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          password_hash: string
+          username: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          password_hash?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      lead_events: {
+        Row: {
+          created_at: string
+          event_data: Json | null
+          event_type: string
+          id: string
+          lead_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          lead_id: string
+        }
+        Update: {
+          created_at?: string
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          lead_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_events_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          band: string | null
+          company: string | null
+          company_size: string | null
+          created_at: string
+          email: string
+          id: string
+          industry: string | null
+          label: string | null
+          model_rationale: string | null
+          name: string
+          problem_text: string
+          score: number | null
+          status: string
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          band?: string | null
+          company?: string | null
+          company_size?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          industry?: string | null
+          label?: string | null
+          model_rationale?: string | null
+          name: string
+          problem_text: string
+          score?: number | null
+          status?: string
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          band?: string | null
+          company?: string | null
+          company_size?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          industry?: string | null
+          label?: string | null
+          model_rationale?: string | null
+          name?: string
+          problem_text?: string
+          score?: number | null
+          status?: string
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
