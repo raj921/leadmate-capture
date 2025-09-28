@@ -80,31 +80,6 @@ export function LeadCaptureForm({ webhookUrl }: LeadCaptureFormProps) {
     setIsLoading(true);
 
     try {
-      // Store in database
-      const { data: leadData, error: dbError } = await supabase
-        .from('leads')
-        .insert({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          website: formData.website,
-          problem_text: formData.problem,
-          status: 'new'
-        })
-        .select()
-        .single();
-
-      if (dbError) throw dbError;
-
-      // Add lead captured event
-      await supabase
-        .from('lead_events')
-        .insert({
-          lead_id: leadData.id,
-          event_type: 'lead_captured',
-          event_data: { source: 'website', form_version: 'v1' }
-        });
-
       // Send to N8N webhook
       const response = await fetch(webhookUrl, {
         method: "POST",
@@ -113,7 +88,6 @@ export function LeadCaptureForm({ webhookUrl }: LeadCaptureFormProps) {
         },
         body: JSON.stringify({
           ...formData,
-          lead_id: leadData.id,
           timestamp: new Date().toISOString(),
           source: window.location.origin,
         }),
